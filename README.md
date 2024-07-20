@@ -40,6 +40,17 @@
 ![화면 캡처 2024-07-14 205756](https://github.com/user-attachments/assets/a8d52e95-059f-4e87-9bae-d25c90e0c399)
 </details>
 
+<details>
+<summary style="font-weight: bold;">영문 경로에서만 실행 가능한 게임 대응</summary>
+
+- 원본 게임 폴더를 임시 폴더로 복사(포크) 하고 포크에서 생긴 변경사항을 원본 게임으로 다시 병합하는 기능입니다.
+
+![화면 캡처 2024-07-21 015838](https://github.com/user-attachments/assets/fb59d09e-49fc-4f6d-9bd1-3b2fb473714f)
+![화면 캡처 2024-07-21 015916](https://github.com/user-attachments/assets/6b4fc26c-6c98-4452-a23e-26e84ef2161c)
+![화면 캡처 2024-07-21 015933](https://github.com/user-attachments/assets/c054eba8-1fc3-4109-9693-882136ab55b7)
+
+
+</details>
 
 # 지원 예정
 
