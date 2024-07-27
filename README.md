@@ -10,6 +10,9 @@
   - 현재 지원중인 사이트: DLSITE, GETCHU, FANZA
 
 ![1](https://github.com/user-attachments/assets/0ebfd47b-7b4e-49c8-b120-5238961895e4)
+![화면 캡처 2024-07-27 192034](https://github.com/user-attachments/assets/66937287-9dbf-44d9-b1b4-e93c8177bbdc)
+
+
 </details>
 
 
@@ -76,6 +79,7 @@
 ## 작품 등록을 위한 폴더 스캔
 ### 작품이 매핑되는 조건
 - 모든 **작품은 폴더 단위로 관리된다고 가정**합니다.
+  - **압축 파일의 경우 자동으로 같은 이름의 폴더로 감싸서 관리**합니다.
 - 폴더 이름에 작품을 매핑시킬 수 있는 특정 패턴이 존재해야합니다. (ex: `.... [RJ000000]`)
 - Getchu, Fanza 의 경우 ID 구분을 위해 아래와 같이 작품 코드를 GC, FZ 접두어를 붙여서 표현해야 합니다.
   - `... [GC000000]` `... [FZd_000000]`
@@ -83,10 +87,54 @@
   - (추가 사용법 참고)
 - 스캔은 지정한 폴더 바로 하위에 존재하는 폴더들을 대상으로 진행됩니다.
 
-### 폴더 스캔 실행
+### 방법 1: 폴더 동기화
+
+- 작업 - 폴더 동기화 탭에서 관리 대상 폴더를 등록하고 동기화 시킬 수 있습니다.
+- 동기화 폴더를 등록한 후, 원하는 동기화 옵션을 설정합니다.
+- 그 후, 동기화 폴더 스캔 작업을 실행하여 변경된 경로들을 추출하고, 동기화 적용 작업을 실행하여 실제 동기화를 진행합니다.
+
+**옵션**
+
+- 깊이: 스캔할 깊이를 제한합니다.
+- 깊이 고정: 작품들이 폴더를 기준으로 특정 깊이에만 존재할 경우 사용할 수 있는 옵션입니다.
+  - 활성화 시 해당 깊이의 경로들만 동기화 됩니다.
+  - ID 매핑이 되지 않는 폴더가 모호하지 않기 때문에 커스텀 작품을 정확하게 추가할 수 있습니다.
+  - 다음과 같은 폴더 구조를 가진 경우 유용합니다.
+    - 동기화폴더/번역/작품1
+    - 동기화폴더/번역/작품2
+    - 동기화폴더/미번역/작품1
+    - 동기화폴더/미번역/작품2
+- 삭제된 경로 제거: DB 에 존재하는 경로들 중, 더이상 존재하지 않는 경로들을 자동으로 제거합니다.
+- 압축 파일 감싸기: 압축 파일도 동기화 스캔 대상으로 취급합니다. 단, 압축 파일 동기화 시 압축 파일을 감싸는 폴더를 자동으로 생성합니다.
+- 커스텀 작품 등록: 작품과 매치되지 않는 경로들도 커스텀 작품으로 추가합니다.
+  - "깊이까지 검색" 옵션을 사용하는 경우 부적확한 경로들이 커스텀 작품으로 추가될 수 있습니다.
+
+<details>
+<summary style="font-weight: bold;">이미지 보기</summary>
+  
+**작업 - 폴더 동기화 탭 - 추가**
+
+![화면 캡처 2024-07-27 191820](https://github.com/user-attachments/assets/c849bee7-b876-4664-8621-2b1af8950916)
+
+![화면 캡처 2024-07-27 191949](https://github.com/user-attachments/assets/716721ba-d295-422f-90a4-21d0bb01c9fb)
+
+**동기화 스캔 실행**
+
+![화면 캡처 2024-07-27 192015](https://github.com/user-attachments/assets/0b78dcf3-fc65-4fb2-a94a-8937dde6c163)
+
+**동기화 적용 실행**
+
+![화면 캡처 2024-07-27 192034](https://github.com/user-attachments/assets/fc46dd56-c826-457a-a9d4-e8fd83a529ab)
+
+![화면 캡처 2024-07-27 192113](https://github.com/user-attachments/assets/a59f89a9-fd54-49fe-b157-7b06f70dc085)
+
+</details>
+
+### 방법 2: 폴더 스캔 실행
 
 - 작업 - 스캔작업 탭에서 폴더 스캔을 실행할 수 있습니다.
-- 스캔할 폴더 경로를 `대상 부모 디렉토리` 에 입력하고 `실행` 을 클릭합니다.
+- 스캔할 폴더 경로를 `대상 부모 폴더` 에 입력하고 `실행` 을 클릭합니다.
+- 해당 폴더 바로 아래에 있는 폴더만 스캔되며, 주로 스캔과 동시에 경로 이동을 시키고 싶은 경우 사용합니다.
 
 <details>
 <summary style="font-weight: bold;">이미지 보기</summary>
@@ -142,13 +190,17 @@
 **그 후 제목, 그룹, 라벨 등도 편집이 가능해집니다.**
 
 ![화면 캡처 2024-07-14 213510](https://github.com/user-attachments/assets/cafbe8fd-94c9-434c-ad30-da30a21f07e0)
+
 ![화면 캡처 2024-07-14 213520](https://github.com/user-attachments/assets/14da00ca-4400-4353-ae00-7dd89b07b190)
+
 ![화면 캡처 2024-07-14 213535](https://github.com/user-attachments/assets/37b276ba-bdb4-42d0-9a2b-3a2045aa42e3)
+
 ![화면 캡처 2024-07-14 213619](https://github.com/user-attachments/assets/076cb30e-91d0-49e1-96b6-87cc74ee35bf)
 
 **마음에 드는 그룹/라벨이 없는 경우 임의로 생성할 수 있습니다**
 
 ![화면 캡처 2024-07-14 213712](https://github.com/user-attachments/assets/61177212-3b1b-4df3-80a3-2487dedbb7c4)
+
 ![화면 캡처 2024-07-14 213719](https://github.com/user-attachments/assets/8b06625a-40e2-4beb-9f88-729daa919abd)
 
 **입력이 끝난 경우 경고 표시를 해제하여 관리가 필요하지 않은 작품임을 구분할 수 있게 합니다**
@@ -179,6 +231,7 @@
 **작업 전 폴더 구조**
 
 ![화면 캡처 2024-07-14 220337](https://github.com/user-attachments/assets/54ba547b-ab83-4dfd-8141-f92b17dd8982)
+
 ![화면 캡처 2024-07-14 220347](https://github.com/user-attachments/assets/70892187-c083-48b8-acdf-08317d7094c3)
 
 
@@ -208,6 +261,7 @@
 <summary style="font-weight: bold;">이미지 보기</summary>
 
 ![화면 캡처 2024-07-14 215945](https://github.com/user-attachments/assets/eb361f0c-e876-49c9-8e4d-f8e35cdbfad6)
+
 ![화면 캡처 2024-07-14 220000](https://github.com/user-attachments/assets/46e17065-100f-4473-9770-cf052f182e0a)
 
 </details>
