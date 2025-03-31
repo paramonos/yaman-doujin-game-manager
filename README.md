@@ -345,6 +345,7 @@ MV/MZ 는 [이 링크](https://github.com/paramonos/RPG-Maker-MV-MZ-Cheat-UI-Plu
 
 1. VPN 으로 IP 변경
 2. 직접 캡차를 해결하고 관련 정보를 프로그램에 입력
+  - 해당 방법 사용 시 매우 짧은 주기로 구글에서 캡차 재입력 요구를 할 수 있습니다.
 
 아래는 그 중 두 번째 방법에 대한 설명입니다.
 
