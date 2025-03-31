@@ -338,6 +338,82 @@ MV/MZ 는 [이 링크](https://github.com/paramonos/RPG-Maker-MV-MZ-Cheat-UI-Plu
 ### VX
 - F9: 치트 메뉴
 
+## 세이브 검색 관련
+
+세이브 검색 기능은 비공식 구글 검색 API 를 사용하는데, 해당 기능을 많이 사용하면 구글 측에서 캡차 입력을 요구합니다.
+이런 경우 두 가지 방법 중 하나로 해결이 가능합니다.
+
+1. VPN 으로 IP 변경
+2. 직접 캡차를 해결하고 관련 정보를 프로그램에 입력
+
+아래는 그 중 두 번째 방법에 대한 설명입니다.
+
+### 구글 검색에 필요한 쿠키/헤더 얻어오기
+
+1. 크롬 시크릿 탭을 엽니다. (`Ctrl + Shift + N`)
+2. 시크릿 탭에서 크롬 개발자 도구를 엽니다. (`F12`)
+3. 개발자 도구 네트워크 탭을 클립합니다.
+4. 시크릿 탭에서 구글 접속 후 아무 단어나 검색합니다.
+5. 개발자 도구 네트워크 탭에서 `search` 를 검색하고, `Fetch/XHR` 을 클릭하면 요청이 필터링 됩니다.
+   - 일반적으로 2개의 요청이 필터링되며, 필터링 되는 요청이 없는 경우 `Fetch/XHR` 대신 `All` 을 클릭하여 `search` 를 검색합니다.
+   - 요청이 검색되지 않으면 개발자 도구를 유지한 상태로 구글 검색 창을 새로고침합니다.
+6. 필터링된 `search` 요청 중 가장 마지막 요청을 클릭하면, 오른쪽 `Headers` 탭에서 쿠키와 헤더를 확인할 수 있습니다.
+
+
+<details>
+<summary style="font-weight: bold;">이미지 보기</summary>
+
+**개발자 도구 열기**
+
+![1  debug mode](https://github.com/user-attachments/assets/169b7364-09f3-4385-a581-f0849ce7c2d1)
+
+**아무 단어나 검색하기**
+
+![2  search](https://github.com/user-attachments/assets/73d682e7-4ec7-450f-a121-8147f4cd02ea)
+
+**개발자 도구 네트워크 탭 열어서 search 요청 검색**
+
+![3  network](https://github.com/user-attachments/assets/5386620f-a9ea-4b2e-8702-033b50a16b09)
+
+**쿠키 정보 확인 (`AEC=...`)**
+
+![4  cookie](https://github.com/user-attachments/assets/65e8f7da-7a50-460a-b673-244211143edd)
+
+**헤더 정보 확인**
+
+![5  headers](https://github.com/user-attachments/assets/2f96161d-99d6-40af-9d19-2af5a64763e8)
+
+</details>
+
+### 얻어온 쿠키/헤더 프로그램에 입력
+
+위에서 얻어온 쿠키와 헤더를 각각 프로그램에 입력합니다.
+
+프로그램의 `설정 - 구글 설정` 탭으로 이동 후, 쿠키와 헤더 쪽에 각각 데이터를 입력합니다.
+
+쿠키/헤더 테이블을 클릭하면 편집을 시작할 수 있습니다.
+
+- 쿠키: 개발자 도구에서 `Cookie:` 에 대한 값을 드래그하여 복사 후 붙여넣기
+- 헤더: 개발자 도구에서 `Downlink:` 에서부터 `User-Agent:` 의 값까지 전부 드래그하여 복사 후 붙여넣기
+  - 반드시 `User-Agent:` 의 값까지 복사돼야 함
+
+<details>
+<summary style="font-weight: bold;">이미지 보기</summary>
+
+**쿠키 입력**
+
+![1  cookie 1](https://github.com/user-attachments/assets/7cf7d4bb-4008-4a2b-b15b-11383f98df29)
+
+**헤더 입력**
+
+![2  header](https://github.com/user-attachments/assets/cca39f7d-b728-4ec5-a82f-75e6aa13ffca)
+
+**입력 후 다음과 같이 테이블이 나와야 함**
+
+![3  result](https://github.com/user-attachments/assets/cd111839-c946-4993-aaee-c76b808d0767)
+
+</details>
+
 # 주의사항
 ## 보안 관련
 - 프로그램이 내부적으로 서버를 동작시키기 때문에 8082 포트가 노출되지 않도록 방화벽 및 공유기 설정을 확인해주세요.
